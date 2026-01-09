@@ -1,32 +1,44 @@
-# Empirica Cybersecurity Experiment - Docker Image
-FROM node:20-alpine
+# Build stage - use full Node.js image for building
+FROM node:20 AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies
-RUN apk add --no-cache \
-    python3 \
-    make \
-    g++ \
-    git
+# Install rsync for server build
+RUN apt-get update && apt-get install -y rsync && rm -rf /var/lib/apt/lists/*
 
-# Copy all files first (Empirica needs full structure)
+# Copy all files
 COPY . .
 
-# Install server dependencies
+# Build server
+WORKDIR /app/server
+RUN npm install --force
+RUN npm rebuild
+RUN npm run build
+
+# Build client
+WORKDIR /app/client
+RUN npm install --force
+RUN npm rebuild
+RUN npm run build
+
+# Production stage - use Alpine for smaller image
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy built files from builder
+COPY --from=builder /app/server/dist /app/server/dist
+COPY --from=builder /app/server/package*.json /app/server/
+COPY --from=builder /app/client/dist /app/client/dist
+COPY --from=builder /app/client/package*.json /app/client/
+
+# Install only production dependencies
 WORKDIR /app/server
 RUN npm ci --only=production
 
-# Build server
-RUN npm run build
-
-# Install client dependencies
 WORKDIR /app/client
 RUN npm ci --only=production
-
-# Build client
-RUN npm run build
 
 # Back to root
 WORKDIR /app
