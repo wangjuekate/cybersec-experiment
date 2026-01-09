@@ -1,0 +1,4 @@
+round_id,round_index,task,shared_telemetry,ai_model_accuracy
+01KDXMNZ4GMZ4HASEVV90EGA3Q,0,collaboration,"[{'playerId': '01KDXMNSP1FWPCXCXA9KH8AWSD', 'amount': 'partial', 'resolution': 'coarse', 'signals': ['THREAT-DJFUQ', 'THREAT-EDBTTS', 'THREAT-LLXDB8']}]",0.55
+01KDXMNZ4HGNZV1JDAQHKWH9C4,1,collaboration,"[{'playerId': '01KDXMNSP1FWPCXCXA9KH8AWSD', 'amount': 'full', 'resolution': 'fine', 'signals': ['THREAT-DJFUQ', 'THREAT-EDBTTS', 'THREAT-LLXDB8', 'THREAT-AAO43O', 'THREAT-BUTZA']}]",0.55
+01KDXMNZ4JTQ2ESNNVCWRQH686,2,competition,[],0.0

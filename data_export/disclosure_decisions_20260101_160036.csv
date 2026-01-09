@@ -1,0 +1,3 @@
+player_round_id,disclosure_amount,disclosure_resolution,num_signals_shared,signals_shared
+01KDXMNZ6G00MMQNKEXRJKD3E5,partial,coarse,3,"['THREAT-DJFUQ', 'THREAT-EDBTTS', 'THREAT-LLXDB8']"
+01KDXMRSPWTABDHF9XS7KED567,full,fine,5,"['THREAT-DJFUQ', 'THREAT-EDBTTS', 'THREAT-LLXDB8', 'THREAT-AAO43O', 'THREAT-BUTZA']"

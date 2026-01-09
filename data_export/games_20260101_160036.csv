@@ -1,0 +1,3 @@
+game_id,treatment_name,governance_regime,absorptive_capacity,threat_volatility,player_count,collaboration_rounds,competition_rounds,created_at
+01KDXME53KW14YGM2ZE2T9BXEP,Anon-High-Stable,anonymized,high,stable,4,8,4,2026-01-01T15:36:54.515822-05:00
+01KDXMMT7T2W2D2DCKMH66AYSR,Solo-Test,open,high,stable,1,2,1,2026-01-01T15:40:32.762739-05:00
