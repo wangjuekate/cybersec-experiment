@@ -1,58 +1,16 @@
-# Build stage - use full Node.js image for building
-FROM node:20 AS builder
-
-# Set working directory
-WORKDIR /app
-
-# Install rsync for server build
-RUN apt-get update && apt-get install -y rsync && rm -rf /var/lib/apt/lists/*
-
-# Copy all files
-COPY . .
-
-# Build server
-WORKDIR /app/server
-RUN npm install --force
-RUN npm rebuild
-RUN npm run build
-
-# Build client
-WORKDIR /app/client
-RUN npm install --force
-RUN npm rebuild
-RUN npm run build
-
-# Production stage - use Alpine for smaller image
-FROM node:20-alpine
+FROM node:18
 
 WORKDIR /app
 
-# Install build dependencies for native modules
-RUN apk add --no-cache python3 make g++
+# Install Empirica CLI
+RUN apt-get update && apt-get install -y curl ca-certificates && \
+    curl -fsS https://install.empirica.dev | sh && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy built files from builder
-COPY --from=builder /app/server/dist /app/server/dist
-COPY --from=builder /app/server/package*.json /app/server/
-COPY --from=builder /app/client/dist /app/client/dist
-COPY --from=builder /app/client/package*.json /app/client/
+# Copy bundled experiment
+COPY cybersec-experiment.tar.zst .
 
-# Install only production dependencies
-WORKDIR /app/server
-RUN npm ci --only=production
-
-WORKDIR /app/client
-RUN npm ci --only=production
-
-# Back to root
-WORKDIR /app
-
-# Expose Empirica default port
 EXPOSE 3000
 
-# Set environment variables
-ENV NODE_ENV=production
-ENV PORT=3000
-
-# Start Empirica server
-WORKDIR /app/server
-CMD ["node", "dist/index.js"]
+# Run empirica serve with defensive .empirica creation
+CMD ["sh", "-c", "mkdir -p .empirica && empirica serve cybersec-experiment.tar.zst"]
