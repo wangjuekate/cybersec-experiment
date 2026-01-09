@@ -27,6 +27,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Install build dependencies for native modules
+RUN apk add --no-cache python3 make g++
+
 # Copy built files from builder
 COPY --from=builder /app/server/dist /app/server/dist
 COPY --from=builder /app/server/package*.json /app/server/
