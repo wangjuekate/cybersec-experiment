@@ -54,4 +54,5 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 # Start Empirica server
-CMD ["node", "server/dist/index.js"]
+WORKDIR /app/server
+CMD ["node", "dist/index.js"]
