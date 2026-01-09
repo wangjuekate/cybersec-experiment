@@ -1,5 +1,5 @@
 # Empirica Cybersecurity Experiment - Docker Image
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
@@ -11,28 +11,32 @@ RUN apk add --no-cache \
     g++ \
     git
 
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci --only=production
-
-# Copy experiment code
+# Copy all files first (Empirica needs full structure)
 COPY . .
 
-# Build the experiment if needed
-RUN npm run build || echo "No build step needed"
+# Install server dependencies
+WORKDIR /app/server
+RUN npm ci --only=production
+
+# Build server
+RUN npm run build
+
+# Install client dependencies
+WORKDIR /app/client
+RUN npm ci --only=production
+
+# Build client
+RUN npm run build
+
+# Back to root
+WORKDIR /app
 
 # Expose Empirica default port
 EXPOSE 3000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
 
 # Set environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
 
 # Start Empirica server
-CMD ["npm", "start"]
+CMD ["node", "server/dist/index.js"]
