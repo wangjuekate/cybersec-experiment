@@ -2,15 +2,23 @@ import { ClassicListenersCollector } from "@empirica/core/admin/classic";
 const Empirica = new ClassicListenersCollector();
 
 Empirica.onGameStart(({ game }) => {
-  const { playerCount, collaborationRounds, competitionRounds, governanceRegime, absorptiveCapacity, threatVolatility } = game.get("treatment");
+  const { playerCount, collaborationRounds, competitionRounds, governanceRegime, absorptiveCapacity, threatVolatility, aggregationType } = game.get("treatment");
+  
+  // Use actual player count instead of treatment playerCount
+  const players = game.players;
+  const actualPlayerCount = players.length;
+  
+  console.log(`Game starting with ${actualPlayerCount} players (treatment expects ${playerCount})`);
+  console.log(`Aggregation type: ${aggregationType || 'ai'} (${aggregationType === 'nonprofit' ? 'Nonprofit Organization' : 'AI Model'})`);
   
   game.set("governanceRegime", governanceRegime);
   game.set("absorptiveCapacity", absorptiveCapacity);
   game.set("threatVolatility", threatVolatility);
+  game.set("aggregationType", aggregationType || "ai");
   game.set("phase", "collaboration");
   game.set("chatHistory", []);
+  game.set("actualPlayerCount", actualPlayerCount);
   
-  const players = game.players;
   players.forEach(player => {
     const threatPortfolio = generateThreatPortfolio();
     player.set("threatPortfolio", threatPortfolio);

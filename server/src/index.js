@@ -9,6 +9,7 @@ import { info, setLogLevel } from "@empirica/core/console";
 import minimist from "minimist";
 import process from "process";
 import { Empirica } from "./callbacks";
+import { CustomLobby } from "./customLobby";
 
 const argv = minimist(process.argv.slice(2), { string: ["token"] });
 
@@ -27,6 +28,7 @@ setLogLevel(argv["loglevel"] || "info");
   ctx.register(ClassicLoader);
   ctx.register(Classic());
   ctx.register(Lobby());
+  ctx.register(CustomLobby()); // Register custom lobby logic
   ctx.register(Empirica);
   ctx.register(function (_) {
     _.on("ready", function () {

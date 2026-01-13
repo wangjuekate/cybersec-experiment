@@ -11,6 +11,9 @@ interface SurveyResponses {
   governance: string;
   learning: string;
   comments: string;
+  email: string;
+  interestedInResults: boolean;
+  interestedInMentorship: boolean;
 }
 
 export function ExitSurvey({ next }: ExitSurveyProps) {
@@ -20,7 +23,10 @@ export function ExitSurvey({ next }: ExitSurveyProps) {
     difficulty: '',
     governance: '',
     learning: '',
-    comments: ''
+    comments: '',
+    email: '',
+    interestedInResults: false,
+    interestedInMentorship: false
   });
 
   const handleSubmit = () => {
@@ -117,6 +123,79 @@ export function ExitSurvey({ next }: ExitSurveyProps) {
               placeholder="Any thoughts about the experiment, interface, or your experience..."
               rows={5}
             />
+          </div>
+
+          {/* Email Collection Section */}
+          <div className="survey-section email-collection">
+            <div className="section-header">
+              <h3>📊 Get Your Results & Opportunities</h3>
+              <p className="section-description">
+                Interested in seeing your performance analysis or getting expert feedback? 
+                Leave your email below (optional).
+              </p>
+            </div>
+
+            <div className="survey-question">
+              <label>
+                <strong>Email Address</strong> <span className="optional">(optional)</span>
+              </label>
+              <input
+                type="email"
+                value={responses.email}
+                onChange={(e) => updateResponse('email', e.target.value)}
+                placeholder="your.email@example.com"
+                className="email-input"
+              />
+            </div>
+
+            {responses.email && (
+              <div className="interest-checkboxes">
+                <label className="checkbox-option">
+                  <input
+                    type="checkbox"
+                    checked={responses.interestedInResults}
+                    onChange={(e) => setResponses({ 
+                      ...responses, 
+                      interestedInResults: e.target.checked 
+                    })}
+                  />
+                  <span>
+                    <strong>📈 Send me my detailed performance results</strong>
+                    <p className="checkbox-description">
+                      Get insights on your decision-making patterns, collaboration effectiveness, 
+                      and how you compared to other participants
+                    </p>
+                  </span>
+                </label>
+
+                <label className="checkbox-option">
+                  <input
+                    type="checkbox"
+                    checked={responses.interestedInMentorship}
+                    onChange={(e) => setResponses({ 
+                      ...responses, 
+                      interestedInMentorship: e.target.checked 
+                    })}
+                  />
+                  <span>
+                    <strong>🎯 I'm interested in expert mentorship</strong>
+                    <p className="checkbox-description">
+                      Connect with experienced professionals who can provide personalized 
+                      feedback on your cybersecurity strategy and decision-making
+                    </p>
+                  </span>
+                </label>
+              </div>
+            )}
+
+            {responses.email && (
+              <div className="privacy-note">
+                <small>
+                  🔒 Your email will only be used for the purposes you selected above. 
+                  We respect your privacy and won't share your information with third parties.
+                </small>
+              </div>
+            )}
           </div>
         </div>
 

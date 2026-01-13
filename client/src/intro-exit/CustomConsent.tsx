@@ -6,137 +6,96 @@ interface CustomConsentProps {
 
 export function CustomConsent({ next }: CustomConsentProps) {
   const [agreed, setAgreed] = useState(false);
-  const [understoodRisks, setUnderstoodRisks] = useState(false);
-  const [understoodWithdrawal, setUnderstoodWithdrawal] = useState(false);
-
-  const canProceed = agreed && understoodRisks && understoodWithdrawal;
 
   return (
     <div className="stage-container">
-      <div className="stage-content">
-        <div className="stage-header">
-          <h1>Informed Consent</h1>
-          <p>Please read carefully and confirm your understanding</p>
+      <div className="stage-content" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div className="stage-header" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+            Research Consent Form
+          </h1>
+          <p style={{ fontSize: '1.125rem', color: '#6b7280' }}>
+            Do you consent to participate in this experiment?
+          </p>
         </div>
 
         <div className="stage-body">
-          <div className="info-card">
-            <h3>Study Purpose</h3>
-            <p>
-              This research examines how cybersecurity professionals make decisions about sharing 
-              threat intelligence in collaborative and competitive environments. Your participation 
-              will help us understand the factors that influence information sharing in cybersecurity ecosystems.
+          <div className="info-card" style={{ 
+            padding: '1.5rem', 
+            background: '#f9fafb', 
+            borderRadius: '0.5rem',
+            border: '1px solid #e5e7eb',
+            marginBottom: '1.5rem'
+          }}>
+            <p style={{ lineHeight: '1.8', fontSize: '1rem', color: '#374151' }}>
+              This experiment is part of a <strong>scientific project</strong>. Your decision to participate 
+              in this experiment is <strong>entirely voluntary</strong>. There are <strong>no known or 
+              anticipated risks</strong> to participating in this experiment. There is <strong>no way for 
+              us to identify you</strong>. The only information we will have, in addition to your responses, 
+              is the timestamps of your interactions with our site. The results of our research may be 
+              presented at scientific meetings or published in scientific journals.
             </p>
           </div>
 
-          <div className="info-card highlight">
-            <h3>What Participation Involves</h3>
-            <ul style={{ marginLeft: '1.5rem', marginTop: '1rem', lineHeight: '1.8' }}>
-              <li>Acting as a CISO making strategic decisions about threat intelligence sharing</li>
-              <li>Participating in 12 rounds of decision-making (approximately 30-45 minutes)</li>
-              <li>Completing a brief survey about your experience at the end</li>
-              <li>Your decisions will be recorded for research analysis</li>
-            </ul>
-          </div>
-
-          <div className="results-grid">
-            <div className="info-card">
-              <h3>🔒 Confidentiality</h3>
-              <p>
-                All data collected will be anonymized. Your identity will not be linked to your responses. 
-                Data will be stored securely and used only for research purposes.
-              </p>
-            </div>
-
-            <div className="info-card">
-              <h3>⚠️ Risks</h3>
-              <p>
-                There are minimal risks associated with this study. You may experience mild fatigue 
-                from decision-making tasks. You can take breaks as needed.
-              </p>
-            </div>
-
-            <div className="info-card">
-              <h3>✋ Voluntary</h3>
-              <p>
-                Your participation is completely voluntary. You may withdraw at any time without 
-                penalty or loss of benefits to which you are otherwise entitled.
-              </p>
-            </div>
-          </div>
-
-          <div className="info-card warning">
-            <h3>Your Rights</h3>
-            <ul style={{ marginLeft: '1.5rem', marginTop: '1rem', lineHeight: '1.8' }}>
-              <li>You have the right to ask questions about the study at any time</li>
-              <li>You have the right to withdraw from the study at any time</li>
-              <li>You have the right to request that your data be deleted</li>
-              <li>You have the right to receive a summary of the research findings</li>
-            </ul>
-          </div>
-
-          <div className="info-card">
-            <h3>Contact Information</h3>
-            <p>
-              If you have questions about this study, please contact the research team. 
-              If you have questions about your rights as a research participant, please contact 
-              your institution's Institutional Review Board (IRB).
-            </p>
-          </div>
-
-          <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#f9fafb', borderRadius: '0.5rem', border: '2px solid #e5e7eb' }}>
-            <h3 style={{ marginBottom: '1rem' }}>Please confirm your understanding:</h3>
-            
-            <label style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '1rem', cursor: 'pointer' }}>
+          <div style={{ 
+            marginTop: '2rem', 
+            padding: '2rem', 
+            background: 'white', 
+            borderRadius: '0.5rem',
+            border: '2px solid #2563eb',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+          }}>
+            <label style={{ 
+              display: 'flex', 
+              alignItems: 'flex-start', 
+              cursor: 'pointer',
+              fontSize: '1.125rem'
+            }}>
               <input
                 type="checkbox"
                 checked={agreed}
                 onChange={(e) => setAgreed(e.target.checked)}
-                style={{ marginRight: '0.75rem', marginTop: '0.25rem', width: '1.25rem', height: '1.25rem', cursor: 'pointer' }}
+                style={{ 
+                  marginRight: '1rem', 
+                  marginTop: '0.25rem', 
+                  width: '1.5rem', 
+                  height: '1.5rem', 
+                  cursor: 'pointer',
+                  accentColor: '#2563eb'
+                }}
               />
-              <span style={{ flex: 1 }}>
-                I have read and understood the information above. I agree to participate in this research study.
-              </span>
-            </label>
-
-            <label style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '1rem', cursor: 'pointer' }}>
-              <input
-                type="checkbox"
-                checked={understoodRisks}
-                onChange={(e) => setUnderstoodRisks(e.target.checked)}
-                style={{ marginRight: '0.75rem', marginTop: '0.25rem', width: '1.25rem', height: '1.25rem', cursor: 'pointer' }}
-              />
-              <span style={{ flex: 1 }}>
-                I understand the potential risks and benefits of participating in this study.
-              </span>
-            </label>
-
-            <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
-              <input
-                type="checkbox"
-                checked={understoodWithdrawal}
-                onChange={(e) => setUnderstoodWithdrawal(e.target.checked)}
-                style={{ marginRight: '0.75rem', marginTop: '0.25rem', width: '1.25rem', height: '1.25rem', cursor: 'pointer' }}
-              />
-              <span style={{ flex: 1 }}>
-                I understand that my participation is voluntary and I can withdraw at any time.
+              <span style={{ flex: 1, lineHeight: '1.6' }}>
+                Clicking on the <strong>"I AGREE"</strong> button indicates that you are <strong>at least 18 years of age</strong>, 
+                and agree to participate voluntarily.
               </span>
             </label>
           </div>
 
-          <div className="form-actions">
+          <div className="form-actions" style={{ marginTop: '2rem' }}>
             <button 
               className="btn-primary" 
               onClick={next}
-              disabled={!canProceed}
+              disabled={!agreed}
+              style={{
+                fontSize: '1.125rem',
+                padding: '1rem 3rem',
+                opacity: agreed ? 1 : 0.5,
+                cursor: agreed ? 'pointer' : 'not-allowed'
+              }}
             >
-              I Consent - Begin Study
+              I AGREE
             </button>
           </div>
 
-          {!canProceed && (
-            <p style={{ textAlign: 'center', color: '#6b7280', marginTop: '1rem', fontSize: '0.875rem' }}>
-              Please check all boxes to proceed
+          {!agreed && (
+            <p style={{ 
+              textAlign: 'center', 
+              color: '#6b7280', 
+              marginTop: '1rem', 
+              fontSize: '0.875rem',
+              fontStyle: 'italic'
+            }}>
+              Please check the box above to proceed
             </p>
           )}
         </div>

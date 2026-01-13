@@ -1,0 +1,149 @@
+/* Override Empirica's default player identifier form */
+.min-h-screen.bg-empirica-50 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  min-height: 100vh !important;
+}
+
+/* Style the identifier form card */
+.min-h-screen .bg-white.py-8.px-4.shadow {
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+  padding: 3rem !important;
+  max-width: 500px !important;
+  margin: 0 auto !important;
+}
+
+/* Style the identifier form heading */
+.min-h-screen h2.text-3xl {
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  color: #1f2937 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Style the identifier input */
+#playerID {
+  width: 100% !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+#playerID:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+  outline: none !important;
+}
+
+/* Style the identifier label */
+.min-h-screen label.text-sm.font-medium {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Style the identifier description */
+#playerID-description {
+  margin-top: 0.5rem !important;
+  font-size: 0.875rem !important;
+  color: #6b7280 !important;
+}
+
+/* Style the Enter button */
+.min-h-screen button[type="submit"] {
+  width: 100% !important;
+  padding: 0.875rem 1.5rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: white !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+}
+
+.min-h-screen button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5) !important;
+}
+
+/* Override Empirica's default consent modal */
+.flex.items-end.justify-center.min-h-screen {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Style the consent modal card */
+.inline-block.align-bottom.bg-white.rounded-lg {
+  border-radius: 12px !important;
+  padding: 2.5rem !important;
+  max-width: 600px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Style the consent modal heading */
+.inline-block h3#modal-title {
+  font-size: 1.75rem !important;
+  font-weight: bold !important;
+  color: #1f2937 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Style the consent text */
+.inline-block .text-sm.text-gray-500 {
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+  color: #374151 !important;
+  text-align: left !important;
+}
+
+/* Style the consent I AGREE button */
+.inline-block button.bg-empirica-600 {
+  width: 100% !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: white !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+  margin-top: 1.5rem !important;
+}
+
+.inline-block button.bg-empirica-600:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5) !important;
+}
+
+/* Hide the green checkmark icon */
+.inline-block .bg-green-100 {
+  display: none !important;
+}
+
+/* Add some spacing */
+.inline-block .mt-3.sm\\:mt-5 {
+  margin-top: 0 !important;
+}
+
+/* Style the consent content box */
+.inline-block .text-sm.text-gray-500.text-justify {
+  background: #f9fafb !important;
+  padding: 1.5rem !important;
+  border-radius: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  margin-top: 1rem !important;
+}
+
+/* Improve overall spacing */
+.inline-block > div > div {
+  margin-bottom: 1.5rem !important;
+}

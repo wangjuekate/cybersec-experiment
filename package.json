@@ -1,0 +1,18 @@
+{
+  "name": "cybersec-experiment",
+  "version": "1.0.0",
+  "description": "Cybersecurity collaboration experiment built with Empirica",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "empirica",
+    "serve": "empirica serve",
+    "bundle": "empirica bundle"
+  },
+  "devDependencies": {
+    "@empirica/core": "^1.0.0"
+  }
+}

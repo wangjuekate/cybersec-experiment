@@ -12,5 +12,5 @@ COPY cybersec-experiment.tar.zst .
 
 EXPOSE 3000
 
-# Run empirica serve with defensive .empirica creation
-CMD ["sh", "-c", "mkdir -p .empirica && empirica serve cybersec-experiment.tar.zst"]
+# Run empirica serve with admin user creation (password must be 8+ chars)
+CMD ["sh", "-c", "mkdir -p .empirica && empirica serve cybersec-experiment.tar.zst --tajriba.auth.username=admin --tajriba.auth.password=admin123 --tajriba.auth.name='Admin User'"]

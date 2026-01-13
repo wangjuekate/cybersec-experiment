@@ -16,10 +16,21 @@ export function Chat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Load existing messages
+  // Load existing messages and auto-refresh every 5 seconds
   useEffect(() => {
-    const chatHistory = (game.get("chatHistory") as ChatMessage[]) || [];
-    setMessages(chatHistory);
+    const updateMessages = () => {
+      const chatHistory = (game.get("chatHistory") as unknown as ChatMessage[]) || [];
+      setMessages(chatHistory);
+    };
+
+    // Initial load
+    updateMessages();
+
+    // Set up auto-refresh every 5 seconds
+    const intervalId = setInterval(updateMessages, 5000);
+
+    // Cleanup interval on unmount
+    return () => clearInterval(intervalId);
   }, [game]);
 
   // Auto-scroll to bottom when new messages arrive
@@ -39,7 +50,7 @@ export function Chat() {
     };
 
     // Add to game chat history
-    const chatHistory = (game.get("chatHistory") as ChatMessage[]) || [];
+    const chatHistory = (game.get("chatHistory") as unknown as ChatMessage[]) || [];
     chatHistory.push(newMessage);
     game.set("chatHistory", chatHistory as any);
 

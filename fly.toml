@@ -3,7 +3,6 @@ primary_region = "iad"
 
 [build]
   image = "ghcr.io/wangjuekate/cybersec-experiment:latest"
-  dockerfile = "Dockerfile"
 
 [env]
   NODE_ENV = "production"

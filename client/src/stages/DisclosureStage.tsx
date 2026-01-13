@@ -13,6 +13,8 @@ export function DisclosureStage() {
 
   const threatPortfolio = (player.get("threatPortfolio") as string[]) || [];
   const governanceRegime = game.get("governanceRegime") as string;
+  const aggregationType = (game.get("aggregationType") as string) || "ai";
+  const isNonprofit = aggregationType === "nonprofit";
 
   const handleSubmit = () => {
     const signals = disclosureAmount === "none" ? [] :
@@ -47,7 +49,11 @@ export function DisclosureStage() {
       <div className="stage-content">
         <div className="stage-header">
           <h1>Telemetry Disclosure Decision</h1>
-          <p>As the CISO of your firm, decide how much threat intelligence to share with the ecosystem.</p>
+          <p>
+            {isNonprofit 
+              ? "As the CISO of your firm, decide how much threat intelligence to contribute to the Cybersecurity Information Sharing Organization (CISO), a nonprofit that helps protect all member firms."
+              : "As the CISO of your firm, decide how much threat intelligence to share with the ecosystem."}
+          </p>
         </div>
 
         <div className="stage-body">
